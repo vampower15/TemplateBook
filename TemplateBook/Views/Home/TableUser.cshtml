@@ -1,0 +1,374 @@
+﻿@{
+    ViewData["Title"] = "Table User Page";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+<!-- Button trigger modal -->
+<div>
+    <button type="button" style="margin-bottom:20px" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+        Add Book For You !
+    </button><br/>
+    <table id="HomelandTable" class="table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th class="table-header-homelandtable">ID</th>
+                <th class="table-header-homelandtable">Name</th>
+                <th class="table-header-homelandtable" style="width:15%">Writer</th>
+                <th class="table-header-homelandtable" style="width:30%">Category</th>
+                <th class="table-header-homelandtable">Publisher</th>
+                <th class="table-header-homelandtable" style="width:10%">Ticket Number</th>
+                <th class="table-header-homelandtable">Release Date</th>
+                <th class="table-header-homelandtable">Price</th>
+                <th class="table-header-homelandtable">Edit | Delete</th>
+
+            </tr>
+        </thead>
+    </table>
+            <br /><br />
+            <div class="col-md-12 text-center">
+                <button type="button" style="margin-bottom:20px" class="btn btn-secondary btn-lg" data-toggle="" onclick="" id="print">
+                    Print PDF
+                </button>
+            </div>
+</div>
+</div>
+</div>
+
+<!-- Modal Insert-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModal_Title" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModal_Title">Add Book</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Name Book:</label>
+                        <input type="text" class="form-control" id="addName" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Writer:</label>
+                        <input type="text" class="form-control" id="addWriter" placeholder="Writer">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Category:</label>
+                        <textarea class="form-control" id="addCategory" placeholder="Category"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Publisher:</label>
+                        <input type="text" class="form-control" id="addPublisher" placeholder="Publisher">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Page:</label>
+                        <input type="text" class="form-control" id="addPage" placeholder="Page">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Release Date:</label>
+                        <input type="date" class="form-control" id="addDate" placeholder="Release Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Price:</label>
+                        <input type="text" class="form-control" id="addPrice" placeholder="Price">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="Insert_book">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Update-->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModal_Title" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModal_Title">Update Your Book !</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="update_name" class="col-form-label">Name Book:</label>
+                        <input type="text" class="form-control" id="update_name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="update_writer" class="col-form-label">Writer:</label>
+                        <input type="text" class="form-control" id="update_writer" placeholder="Writer">
+                    </div>
+                    <div class="form-group">
+                        <label for="update_category" class="col-form-label">Category:</label>
+                        <textarea class="form-control" id="update_category" placeholder="Category"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="update_publisher" class="col-form-label">Publisher:</label>
+                        <input type="text" class="form-control" id="update_publisher" placeholder="Publisher">
+                    </div>
+                    <div class="form-group">
+                        <label for="update_page" class="col-form-label">Page:</label>
+                        <input type="text" class="form-control" id="update_page" placeholder="Page">
+                    </div>
+                    <div class="form-group">
+                        <label for="update_releasedate" class="col-form-label">Release Date:</label>
+                        <input type="text" class="form-control" id="update_releasedate" placeholder="Release Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="update_price" class="col-form-label">Price:</label>
+                        <input type="text" class="form-control" id="update_price" placeholder="Price">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary" id="Insert_book">Add Now</button>*@
+                <button type="button" class="btn btn-warning" id="Update_book">Update Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <environment names="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+    </environment>
+    <style>
+        table.dataTable thead tr {
+            background: #0000FF;
+            color: white;
+            height: 50px;
+        }
+
+        .table-header-homelandtable {
+            text-align: center !important;
+        }
+
+        selected tr {
+            background: #ff0000 !important;
+        }
+
+    </style>
+}
+    @section Scripts{
+    <environment names="Development">
+        @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        @*<script src="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"></script>*@
+        @* <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"></script>*@
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        
+    </environment>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            BookTable(); //เรียกใช้ function
+        });
+
+        function BookTable() {
+            const sss = "https://localhost:7195/api/Homeland"; //ติดตรงนี้ ****
+            $.ajax({
+                type: "GET",
+                url: sss + "/all",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log("response", response)
+                    var tableBook = $("#HomelandTable").DataTable({
+                        "data": response,
+                        "ordering": false,
+                        "columns": [{
+                            "data": "idBk",
+                            "visible": false
+                        }, {
+                            "data": "nameBk",
+                            "className": "text-center"
+                        }, {
+                            "data": "writerBk",
+                            "className": "text-center"
+                        }, {
+                            "data": "categoryBk",
+                            "className": "text",
+                                "render": function (data, type, row) {
+                                return data ? data.split("\n").join("<br/>") : "";
+                            }
+
+                        }, {
+                            "data": "publisherBk",
+                            "className": "text-center"
+                        }, {
+                            "data": "pageBk",
+                            "className": "text-center"
+                        }, {
+                            "data": "releaseDateBk",
+                            "className": "text-center"
+                        }, {
+                            "data": "priceBk",
+                            "className": "text-center"
+                        }, {
+                            "data": null,
+                            "className": "dt-center",
+                            "defaultContent": `
+                                            <button type="button" id="Update_book_modal" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#updateModal">Edit</button>
+                                                    &nbsp;<button type="button" id="book_delete" class="btn btn-danger btn-lg" >Delete</button>
+                                                    &nbsp;<button type="button" id="book_status" class="btn btn-secondary btn-lg" >Status</button>
+                                    `
+                        }] //ใช้ Alt+96 = `...`
+                    })
+                    //Insert
+                    $("#Insert_book").click(function () {
+                        var name = $("#addName").val();
+                        var writer = $("#addWriter").val();
+                        var category = $("#addCategory").val();
+                        var publisher = $("#addPublisher").val();
+                        var page = $("#addPage").val();
+                        var releasedate = $("#addDate").val();
+                        var price = $("#addPrice").val();
+
+                        var book = {
+                            "nameBk": name,
+                            "writerBk": writer,
+                            "categoryBk": category,
+                            "publisherBk": publisher,
+                            "pageBk": page,
+                            "releaseDateBk": releasedate,
+                            "priceBk": price,
+                        }
+                        $.ajax({
+                            type: "POST",
+                            //url: `${sss}/Insert`,
+                            url: `${sss}/Insert`,
+                            data: JSON.stringify(book),
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (response) {
+                                swal(
+                                    "Success!",
+                                    "",
+                                    "success").then((isSuccess) => {
+                                        if (isSuccess) {
+                                            window.location.reload()
+                                        }
+                                    });
+                            },
+                            error: function (error) {
+                                swal("Failed!", error.statusText, "error");
+                            }
+                        })
+                    });
+
+                    //Edit
+                    $('button#Update_book_modal').click(function (e) {
+                        e.preventDefault();
+                        var row = tableBook.row($(this).parents('tr'));
+                        var id = row.data()["idBk"];
+                        var nameff = row.data()["nameBk"];
+                        var writerff = row.data()["writerBk"];
+                        var categoryff = row.data()["categoryBk"];
+                        var publisherff = row.data()["publisherBk"];
+                        var pageff = row.data()["pageBk"];
+                        var releasedateff = row.data()["releaseDateBk"];
+                        var priceff = row.data()["priceBk"];
+                        console.log("data", row.data())
+                        $("#update_name").val(nameff);
+                        $("#update_writer").val(writerff);
+                        $("#update_category").val(categoryff);
+                        $("#update_publisher").val(publisherff);
+                        $("#update_page").val(pageff);
+                        $("#update_releasedate").val(releasedateff);
+                        $("#update_price").val(priceff);
+
+                        $('#Update_book').click(function () {
+                            var name = $("#update_name").val();
+                            var writer = $("#update_writer").val();
+                            var category = $("#update_category").val();
+                            var publisher = $("#update_publisher").val();
+                            var page = $("#update_page").val();
+                            var releasedate = $("#update_releasedate").val();
+                            var price = $("#update_price").val();
+
+                            var book = {
+                                "nameBk": name,
+                                "writerBk": writer,
+                                "categoryBk": category,
+                                "publisherBk": publisher,
+                                "pageBk": page,
+                                "releaseDateBk": releasedate,
+                                "priceBk": price,
+                            }
+                            $.ajax({
+                                type: "PUT",
+                                url: `${sss}/Update?id=${id}`, //ใช้ Alt+96 //Important
+                                data: JSON.stringify(book),
+                                dataType: "json",
+                                contentType: "application/json",
+                                success: function (response) {
+                                    swal(
+                                        "Edit Success!",
+                                        "",
+                                        "success").then((isSuccess) => {
+                                            if (isSuccess) {
+                                                window.location.reload()
+                                            }
+                                        });
+                                },
+                                error: function (error) {
+                                    swal("Failed!", error.statusText, "error");
+                                }
+                            })
+                        });
+                    })
+
+                    //Delete
+                    //$("#HomelandTable").on('click', 'a.book_delete', function (e)
+                    $('button#book_delete').on('click', function (e) {
+                        e.preventDefault();
+                        var row = tableBook.row($(this).parents('tr'));
+                        var id = row.data()["idBk"];
+                        console.log("idBk", id)
+                        $.ajax({
+                            type: "DELETE",
+                            url: `${sss}/Delete?id=${id}`, //Alt+96 //Important
+                            success: function (response) {
+                                row.remove().draw();
+                            }
+                        })
+                    })
+
+                    //$('button#book_status tbody').on('click', 'tr', function () {
+                    //    $('button#book_status tbody > tr').removeClass('selected');
+                    //    $(this).addClass('selected');
+                    //});
+
+                    $('#HomelandTable tbody').on('click','tr', function () {
+                        $('#HomelandTable tbody > tr').removeClass('selected');
+                        $(this).addClass('selected');
+                    });
+
+                    //$(document).ready(function () {
+                    //    $('#HomelandTable').DataTable({
+                    //        dom: 'Bfrtip',
+                    //        buttons: [
+                    //            'print'
+                    //        ]
+                    //    });
+                    //});
+                }
+            })
+        }        
+    </script>
+}

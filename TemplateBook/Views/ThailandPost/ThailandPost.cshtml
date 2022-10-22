@@ -1,0 +1,218 @@
+﻿@{
+    ViewData["Title"] = "Post Station";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Post Station</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Post Station</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                                <div class="input-group">
+                                    <input type="search" class= "form-control form-control-lg" id="thaipost-search" placeholder="Search ...">
+                                    <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default" onclick="SearchThaiPost()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            @*<table id="thaipost-table" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Zip Code</th>
+                                        <th>Office Name</th>
+                                        <th>Blanch</th>
+                                        <th>Address</th>
+                                        <th>Phone Number</th>
+                                        <th>Working Day</th>
+                                    </tr>
+                                </thead>                              
+                            </table>*@
+                            <br/>
+                            <br/>
+                            <form>
+                                <div class="form-group row">
+                                    <label for="zipcode" class="col-sm-1 col-form-label">ZipCode</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="zipcode" placeholder="Zip">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="officename" class="col-sm-1 col-form-label">Office Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="officename" placeholder="Office">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="branch" class="col-sm-1 col-form-label">Branch</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="branch" placeholder="Branch">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-1 col-form-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="address" placeholder="Address">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="phone" class="col-sm-1 col-form-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="workingday" class="col-sm-1 col-form-label">working day</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="workingday" placeholder="working day">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="workingday-drop" class="col-sm-2 col-form-label">Working Day</label>
+                                    <div class="col-sm-10">
+                                        <div id="working-day-dropdown"></div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-md-6 -->
+                
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- jQuery -->
+@section Styles{
+    <environment names="Development">
+        <link rel="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    </environment>
+}
+
+@section Scripts{
+    <environment names="Development">
+        <script src="~/plugins/jquery/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    </environment>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+    })
+    function SearchThaiPost() {
+
+        console.log("SearchThaiPost")
+        var zipCode = document.getElementById('thaipost-search').value
+        console.log("zipCode",zipCode)
+        $.ajax({
+            url: "@Url.Action("GetThailandPostById","ThailandPost")",
+            data: {
+                zipCode: zipCode
+            },
+            success: function (rs) {
+
+                console.log("rs",rs)
+                if(rs.isSuccess){
+
+                    ManageDropDown(rs.result)
+                    //var data = [];
+                    //    data.push(rs.result);
+                    //var tableThailandPost = $("#thaipost-table").DataTable({
+                    //    processing: true,
+                    //    scrollX: true,
+                    //        "data": data,
+                    //    "columns": [{
+                    //        "data": "zipCode",
+                    //    }, {
+                    //        "data": "officeName"
+                    //    }, {
+                    //        "data": "branch"
+                    //    }, {
+                    //        "data": "address"
+                    //    }, {
+                    //        "data": "phone"
+                    //    }, {
+                    //        "data": "workingday"
+                    //    }]
+                    //})
+
+
+                }else{
+                    swal({
+                        title: "Error!",
+                        text: "Data Not Found",
+                        icon: "error",
+                    });
+                }
+            }
+        });
+
+    }
+
+    function ManageDropDown(data){
+
+            document.getElementById('zipcode').value = data.zipCode
+            document.getElementById('officename').value = data.officeName
+            document.getElementById('branch').value = data.branch
+            document.getElementById('address').value = data.address
+            document.getElementById('phone').value = data.phone
+            document.getElementById('workingday').value = data.workingday
+
+
+            var workingdaysplit = data.workingday.split('|')
+            console.log("workingdaysplit", workingdaysplit)
+
+            var options ="";
+            for (var i = 0; i < workingdaysplit.length; i++){
+                var index = workingdaysplit[i]
+                options += `<option>${index}</option>`
+            }
+            var workingday =`<select class="form-control" id="working-day">
+                                ${options}
+                             </select>`
+
+            document.getElementById('working-day-dropdown').innerHTML = workingday;
+
+    }
+</script>
+}
+
+
