@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Post Station";
+    ViewData["Title"] = "Edit User";
 }
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -8,12 +8,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Post Station</h1>
+                    <h1 class="m-0"> User Info</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Post Station</li>
+                        <li class="breadcrumb-item active">Edit User Lock</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -27,14 +27,14 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                                <div class="input-group">
+                               @* <div class="input-group">
                                     <input type="search" class= "form-control form-control-lg" id="thaipost-search" placeholder="Search ...">
                                     <div class="input-group-append">
                                     <button type="submit" class="btn btn-default" onclick="SearchThaiPost()">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div>*@
 
                             @*<table id="thaipost-table" class="display" style="width:100%">
                                 <thead>
@@ -49,27 +49,28 @@
                                 </thead>                              
                             </table>*@
                             <br/>
+                            <h1 class="m-0">Edit User Lock</h1>
                             <br/>
                             <form>
                                 <div class="form-group row">
-                                    <label for="zipcode" class="col-sm-1 col-form-label">ZipCode</label>
+                                    <label for="zipcode" class="col-sm-1 col-form-label">Client</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="zipcode" placeholder="Zip">
+                                        <input type="text" class="form-control" id="client" placeholder="Client">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="officename" class="col-sm-1 col-form-label">Office Name</label>
+                                    <label for="officename" class="col-sm-1 col-form-label">Username</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="officename" placeholder="Office">
+                                        <input type="text" class="form-control" id="username" placeholder="Username">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="branch" class="col-sm-1 col-form-label">Branch</label>
+                                    <label for="branch" class="col-sm-1 col-form-label">Position</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="branch" placeholder="Branch">
+                                        <input type="text" class="form-control" id="postion" placeholder="Position">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                              @*  <div class="form-group row">
                                     <label for="address" class="col-sm-1 col-form-label">Address</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="address" placeholder="Address">
@@ -93,6 +94,9 @@
                                     <div class="col-sm-10">
                                         <div id="working-day-dropdown"></div>
                                     </div>
+                                </div>*@
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="Insert_book">Save</button>
                                 </div>
                             </form>
 
@@ -106,6 +110,95 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <br />
+                            <h1 class="m-0">Set eLeave file and reason</h1>
+                            <br />
+                            <form>
+                                <div class="form-group row">
+                                    <label for="zipcode" class="col-sm-1 col-form-label">Client</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="client" placeholder="Client">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="leavetype" class="col-sm-1 col-form-label">Type</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="leavetype" placeholder="Type">
+                                    </div>
+                                </div>
+                                <form>
+                                    <div class="form-group row align-items-center">
+                                        <label for="file" class="col-sm-1 col-form-label">Reason</label>
+                                        <div class="col-sm-11">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="reason" id="reason1" value="1">
+                                                <label class="form-check-label" for="reason1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="reason" id="reason2" value="0">
+                                                <label class="form-check-label" for="reason2">
+                                                    No
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="reason" id="reason3" value="2">
+                                                <label class="form-check-label" for="file3">
+                                                    Condition/Day
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div class="form-group row align-items-center">
+                                        <label for="file" class="col-sm-1 col-form-label">File</label>
+                                        <div class="col-sm-11">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="file" id="file1" value="Yes">
+                                                <label class="form-check-label" for="file1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="file" id="file2" value="No">
+                                                <label class="form-check-label" for="file2">
+                                                    No
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="file" id="file3" value="Condition/Day">
+                                                <label class="form-check-label" for="file3">
+                                                    Condition/Day
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="Insert_book">Save</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-md-6 -->
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+
+
 </div>
 <!-- /.content-wrapper -->
 <!-- Control Sidebar -->

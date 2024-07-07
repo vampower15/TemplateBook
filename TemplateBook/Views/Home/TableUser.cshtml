@@ -2,7 +2,6 @@
     ViewData["Title"] = "Table User Page";
 }
 
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -18,22 +17,17 @@
                 <th class="table-header-homelandtable">ID</th>
                 <th class="table-header-homelandtable">Name</th>
                 <th class="table-header-homelandtable" style="width:15%">Writer</th>
-                <th class="table-header-homelandtable" style="width:30%">Category</th>
+                <th class="table-header-homelandtable" style="width:15%">Category</th>
                 <th class="table-header-homelandtable">Publisher</th>
                 <th class="table-header-homelandtable" style="width:10%">Ticket Number</th>
                 <th class="table-header-homelandtable">Release Date</th>
                 <th class="table-header-homelandtable">Price</th>
                 <th class="table-header-homelandtable">Edit | Delete</th>
-
             </tr>
         </thead>
     </table>
             <br /><br />
-            <div class="col-md-12 text-center">
-                <button type="button" style="margin-bottom:20px" class="btn btn-secondary btn-lg" data-toggle="" onclick="" id="print">
-                    Print PDF
-                </button>
-            </div>
+            
 </div>
 </div>
 </div>
@@ -77,6 +71,20 @@
                         <label for="recipient-name" class="col-form-label">Price:</label>
                         <input type="text" class="form-control" id="addPrice" placeholder="Price">
                     </div>
+                  @*  <div class="container mt-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group date" id="timepicker">
+                                    <input type="text" class="form-control" />
+                                    <span class="input-group-append">
+                                        <span class="input-group-text bg-light d-block">
+                                            <i class="fa fa-clock"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
                 </form>
             </div>
             <div class="modal-footer">
@@ -120,7 +128,7 @@
                     </div>
                     <div class="form-group">
                         <label for="update_releasedate" class="col-form-label">Release Date:</label>
-                        <input type="text" class="form-control" id="update_releasedate" placeholder="Release Date">
+                        <input type="date" class="form-control" id="update_releasedate" placeholder="Release Date">
                     </div>
                     <div class="form-group">
                         <label for="update_price" class="col-form-label">Price:</label>
@@ -139,12 +147,32 @@
 
 @section Styles{
     <environment names="Development">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+@*        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />*@
+
+
+        @*ButtonPrint*@
+@*
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />*@
+
+        @*ButtonAll*@
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css" />
+
+       @* <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempus-dominus/6.0.0/css/tempus-dominus.min.css" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">*@
+
+
+
+
     </environment>
     <style>
         table.dataTable thead tr {
-            background: #0000FF;
+            background: blue;
             color: white;
             height: 50px;
         }
@@ -153,23 +181,45 @@
             text-align: center !important;
         }
 
-        selected tr {
+        .selected tr {
             background: #ff0000 !important;
+        }
+
+        .myclass {
+            color: red;
+             /*CSS rules for all these buttons*/
         }
 
     </style>
 }
     @section Scripts{
     <environment names="Development">
-        @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
-        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+        @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>*@
+     @*   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-        @*<script src="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"></script>*@
-        @* <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"></script>*@
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>*@
+
+        @*Button Print*@
+        @*<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>*@
+
+        @*BusttonAll*@
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+
+       @* <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tempus-dominus/6.0.0/js/tempus-dominus.min.js"></script>*@
         
     </environment>
     <script type="text/javascript">
@@ -181,6 +231,7 @@
 
         function BookTable() {
             const sss = "https://localhost:7195/api/Homeland"; //ติดตรงนี้ ****
+            //const sss = "http://localhost:9000/api/Homeland"; //ติดตรงนี้ ****
             $.ajax({
                 type: "GET",
                 url: sss + "/all",
@@ -191,6 +242,21 @@
                     var tableBook = $("#HomelandTable").DataTable({
                         "data": response,
                         "ordering": false,
+                        dom: 'Bfrtip',
+                        buttons: [
+
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                            //{
+                            //    extend: 'print',
+                            //    text: 'Print all',
+                            //    exportOptions: {
+                            //        modifier: {
+                            //            selected: null
+                            //        }
+                            //    }
+                            //}
+                        ],
+                        select: true,
                         "columns": [{
                             "data": "idBk",
                             "visible": false
@@ -223,10 +289,10 @@
                             "data": null,
                             "className": "dt-center",
                             "defaultContent": `
-                                            <button type="button" id="Update_book_modal" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#updateModal">Edit</button>
-                                                    &nbsp;<button type="button" id="book_delete" class="btn btn-danger btn-lg" >Delete</button>
-                                                    &nbsp;<button type="button" id="book_status" class="btn btn-secondary btn-lg" >Status</button>
+                                            <button type="button" id="Update_book_modal" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateModal">Edit</button>
+                                                    &nbsp;<button type="button" id="book_delete" class="btn btn-danger btn-sm" >Delete</button>
                                     `
+                                                    //&nbsp;<button type="button" id="book_status" class="btn btn-secondary btn-sm" >Status</button>
                         }] //ใช้ Alt+96 = `...`
                     })
                     //Insert
@@ -349,26 +415,34 @@
                         })
                     })
 
-                    //$('button#book_status tbody').on('click', 'tr', function () {
-                    //    $('button#book_status tbody > tr').removeClass('selected');
-                    //    $(this).addClass('selected');
-                    //});
-
-                    $('#HomelandTable tbody').on('click','tr', function () {
+                    //HightlightButton
+                    $('#HomelandTable').on('click','tr', function () {
                         $('#HomelandTable tbody > tr').removeClass('selected');
                         $(this).addClass('selected');
                     });
 
-                    //$(document).ready(function () {
-                    //    $('#HomelandTable').DataTable({
-                    //        dom: 'Bfrtip',
-                    //        buttons: [
-                    //            'print'
-                    //        ]
-                    //    });
+                    ////PrintButton
+                    //$('#HomelandTable').DataTable({
+                    //    dom: 'Bfrtip',
+                    //    buttons: [
+                    //        'tb_print'
+                    //    ]
                     //});
                 }
             })
-        }        
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            new tempusDominus.TempusDominus(document.getElementById('timepicker'), {
+                display: {
+                    components: {
+                        hours: true,
+                        minutes: true,
+                        seconds: false
+                    }
+                }
+            });
+        });
     </script>
 }
